@@ -47,7 +47,7 @@ public class PersonInfoTest {
 		person.setFirstName("Gajendra");
 		person.setLastName("Kumar");
 		ResponseEntity<Person> response =restTemplate.postForEntity("http://localhost:" + 8080 + "/restapi/addPerson",person, Person.class);
-		System.out.println("===========");
+		 
 		Assert.assertEquals(200,response.getStatusCodeValue());
 		Assert.assertEquals(Person.class,response.getBody().getClass());
 				
@@ -58,11 +58,6 @@ public class PersonInfoTest {
 	public void testListPerson() throws JSONException {	
 		ResponseEntity<List>  personList = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/listPerson",List.class);
 		Assert.assertEquals(200,personList.getStatusCodeValue());
-		/*if(personList.getBody().size()>0){
-			Assert.assertTrue(true);
-		}else{
-			Assert.assertTrue(false);
-		}*/
 	  
 	}
 	

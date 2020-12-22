@@ -45,8 +45,7 @@ public class PersonController {
 	@PutMapping("/editPerson/{id}")
 	public Person editPerson(@PathVariable(value = "id") Long id, @RequestBody Person personDetails) {
 
-		Person person = personRepository.findById(id)
-				.orElseThrow(() -> new PersonNotFoundException(id));
+		Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
 
 		person.setFirstName(personDetails.getFirstName());
 		person.setLastName(personDetails.getLastName());
@@ -57,11 +56,9 @@ public class PersonController {
 
 	@DeleteMapping("/deletePerson/{id}")
 	public ResponseEntity<?> deletePerson(@PathVariable(value = "id") Long id) {
-		Person person = personRepository.findById(id)
-				.orElseThrow(() -> new PersonNotFoundException(id));
-
+		
+		Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
 		personRepository.delete(person);
-
 		return ResponseEntity.ok().build();
 	}
 
