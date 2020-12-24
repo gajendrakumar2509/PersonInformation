@@ -1,8 +1,5 @@
 package com.mars.assignment.exception;
-
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.Map;
+  
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +12,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ExceptionAdviserController extends ResponseEntityExceptionHandler{
 
     @ExceptionHandler(PersonNotFoundException.class)
-    public ResponseEntity<Object> handleCityNotFoundException(
+    public ResponseEntity<Object> handlePersonNotFoundException(
     		PersonNotFoundException ex, WebRequest request) {
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", "Person not found");
-         
-
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
-    }
+    	
+        String message = "Person Not Found for given Id: "+ex.id;  
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+    } 
 
 }

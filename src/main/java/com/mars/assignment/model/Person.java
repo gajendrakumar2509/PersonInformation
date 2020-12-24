@@ -13,7 +13,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table
-@EntityListeners(AuditingEntityListener.class)
 public class Person {
 
 	@Id
@@ -25,6 +24,15 @@ public class Person {
 	
 	@Column
 	private String lastName;
+	
+	@Column
+	private String addressLine1;
+	
+	@Column
+	private String addressLine2;
+	
+	public Person() { }
+	public Person(String message){}  
 
 	public Long getId() {
 		return id;
@@ -49,8 +57,28 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
 
+	public String getAddressLine1() {
+		return addressLine1;
+	}
+
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
+	}
+
+	public String getAddressLine2() {
+		return addressLine2;
+	}
+
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
+
+	@Override
+	public String toString() {
+		return "{id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", addressLine1="
+				+ addressLine1 + ", addressLine2=" + addressLine2 + "}" ;
+	}
+	
 }
 

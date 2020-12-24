@@ -16,6 +16,7 @@ public class PersonInformation {
 	public static void main(String[] args) {
 		SpringApplication.run(PersonInformation.class, args);
 	}
+		
 	@Bean
 	public Docket productApi() {
       return new Docket(DocumentationType.SWAGGER_2).select()

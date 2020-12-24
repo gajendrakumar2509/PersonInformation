@@ -1,5 +1,9 @@
 #PersonInformation
 
+Please import this project in Eclipse and then  start 
+
+This project will use In Memory Store (H2 Database) 
+
 To run this project using swagger, use url - http://localhost:8080/swagger-ui.html
 - You will get all the list of operations 
 
@@ -8,8 +12,10 @@ POST -> http://localhost:8080/restapi/addPerson
 TO Add the person, you have to pass JSON  data like -
 	{
 	  "firstName": "string",
-	  "lastName": "string"
-	}
+	  "lastName": "string",
+	  "addressLine1": "string",
+  	  "addressLine2": "string"
+	} 
 	
 #Count Person
 GET  -> http://localhost:8080/restapi/countPerson
@@ -25,10 +31,12 @@ PUT -> http://localhost:8080/restapi/editPerson/{id}
 will update the person details 
 need to pass person id as parameter 
 and person detail as body like
-{
-  "firstName": "string",   
-  "lastName": "string"
-}
+	{
+  	  "firstName": "string",
+	  "lastName": "string",
+	  "addressLine1": "string",
+  	  "addressLine2": "string"
+	}
 
 #Get person
 GET -> http://localhost:8080/restapi/getPerson/{id}
@@ -38,6 +46,8 @@ this return the person details based on id
 GET -> http://localhost:8080/restapi/listPerson	
 this will return all the person details 
 
+# Unit testing
+Please refer PersonInfoTest.java 
 
 
 
