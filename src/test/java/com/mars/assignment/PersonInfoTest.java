@@ -27,9 +27,7 @@ public class PersonInfoTest {
 	public void contextLoads() throws Exception {		 
 	
 	}
-	
-	@LocalServerPort
-	private int serverPort;
+	 
 	
 	@Test
 	public void testAddPerson()  {
@@ -38,7 +36,7 @@ public class PersonInfoTest {
 		person.setLastName("Kumar");
 		person.setAddressLine1("Hyderabad");
 		person.setAddressLine1("TS");
-		ResponseEntity<String> response =restTemplate.postForEntity("http://localhost:" + serverPort + "/restapi/addPerson",person, String.class);
+		ResponseEntity<String> response =restTemplate.postForEntity("http://localhost:" + 8080 + "/restapi/addPerson",person, String.class);
 		 
 		if(response.getBody().equalsIgnoreCase("Person details added successfully.")){
 			Assert.assertTrue(true);	
@@ -49,7 +47,7 @@ public class PersonInfoTest {
 	
 	@Test
 	public void testListPerson()  {	
-		ResponseEntity<String>  personList = restTemplate.getForEntity("http://localhost:" + serverPort + "/restapi/listPerson",String.class);
+		ResponseEntity<String>  personList = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/listPerson",String.class);
 		Assert.assertEquals(200,personList.getStatusCodeValue());
 	  
 	}
@@ -62,9 +60,9 @@ public class PersonInfoTest {
 		person.setLastName("Kumar Verma");
 		person.setAddressLine1("Hyderabad");
 		person.setAddressLine1("TS");
-		restTemplate.put("http://localhost:" + serverPort + "/restapi/editPerson/3", person);
+		restTemplate.put("http://localhost:" + 8080 + "/restapi/editPerson/3", person);
 		
-		ResponseEntity<Person>  personResponse = restTemplate.getForEntity("http://localhost:" + serverPort + "/restapi/getPerson/3", Person.class);
+		ResponseEntity<Person>  personResponse = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/getPerson/3", Person.class);
 		if(personResponse.getBody()!=null && personResponse.getBody().getId()>0 ){
 			Assert.assertTrue(true);	
 		}else{
@@ -74,27 +72,27 @@ public class PersonInfoTest {
 
 	@Test
 	public void testGetPerson()  {	 		
-		ResponseEntity<Person> response = restTemplate.getForEntity("http://localhost:" + serverPort + "/restapi/getPerson/3",Person.class);
+		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/getPerson/1",String.class);
 		Assert.assertEquals(200,response.getStatusCodeValue());		 
 	}
 	
 	@Test
 	public void testCountPerson()   {	 
 		
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + serverPort + "/restapi/countPerson",String.class);
+		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/countPerson",String.class);
 		Assert.assertEquals(200,response.getStatusCodeValue()); 
 	}
 	
 	@Test
 	public void testDeletePerson()  {	 
 		
-		ResponseEntity<String> countBeforeDelete = restTemplate.getForEntity("http://localhost:" + serverPort + "/restapi/countPerson",String.class);
+		ResponseEntity<String> countBeforeDelete = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/countPerson",String.class);
 		String beforeDeleteCount[] = countBeforeDelete.getBody().split(":"); 
 		
 		
 		restTemplate.delete("http://localhost:" + 8080 + "/restapi/deletePerson/2"); 
 		
-		ResponseEntity<String> countAfterDelete = restTemplate.getForEntity("http://localhost:" + serverPort + "/restapi/countPerson",String.class);
+		ResponseEntity<String> countAfterDelete = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/countPerson",String.class);
 		String afeterDeleteCount[] = countAfterDelete.getBody().split(":"); 
 		
 		if(beforeDeleteCount.length>0){
