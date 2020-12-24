@@ -89,12 +89,12 @@ public class PersonInfoTest {
 		String beforeDeleteCount[] = countBeforeDelete.getBody().split(":"); 
 		
 		
-		restTemplate.delete("http://localhost:" + 8080 + "/restapi/deletePerson/2"); 
+		restTemplate.delete("http://localhost:" + 8080 + "/restapi/deletePerson/3"); 
 		
 		ResponseEntity<String> countAfterDelete = restTemplate.getForEntity("http://localhost:" + 8080 + "/restapi/countPerson",String.class);
 		String afeterDeleteCount[] = countAfterDelete.getBody().split(":"); 
 		
-		if(beforeDeleteCount.length>0){
+		if(beforeDeleteCount.length>1){
 			if(afeterDeleteCount.length==1){
 				Assert.assertTrue(true);
 			}
